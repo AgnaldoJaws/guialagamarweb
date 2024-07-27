@@ -4,8 +4,22 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
 import { hotelsData } from "../../data/hotels";
 import isTextMatched from "../../utils/isTextMatched";
+import {useEffect, useState} from "react";
 
 const Hotels = () => {
+
+  const [dataHome, setDataHome] = useState([]);
+    console.log(dataHome)
+  useEffect(()=>{
+      fetch('http://192.168.1.4:8083/api/subCategories/1/1')
+          .then((response) => response.json())
+          .then((data)=>{
+              setDataHome(data)
+          })
+          .catch((error) => {
+
+          });
+  },[])
   return (
     <>
       <Swiper

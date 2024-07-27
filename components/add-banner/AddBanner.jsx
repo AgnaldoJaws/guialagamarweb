@@ -5,11 +5,10 @@ const AddBanner = () => {
   const addContent = [
     {
       id: 1,
-      img: "/img/backgrounds/1.png",
+      img: "/img/backgrounds/imagem_roteiro_botocinza_guia_lagamar_2024.png",
       title: (
         <>
-          Things To Do On
-          <br /> Your Trip
+          Turismo de observação
         </>
       ),
       meta: "",
@@ -18,9 +17,9 @@ const AddBanner = () => {
     },
     {
       id: 2,
-      img: "/img/backgrounds/2.png",
-      title: "Up to 70% Discount!",
-      meta: "Enjoy Summer Deals",
+      img: "/img/backgrounds/imagem_roteiro_fandango_guia_lagamar_2024.png",
+      title: "Patrimônio Cultural",
+      meta: "",
       routerPath: "/",
       delayAnimation: "100",
     },
@@ -62,7 +61,7 @@ const AddBanner = () => {
                   href={item.routerPath}
                   className="button px-48 py-15 -blue-1 -min-180 bg-white text-dark-1"
                 >
-                  Learn More
+                  Conhecer
                 </Link>
               </div>
             </div>

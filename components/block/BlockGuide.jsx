@@ -3,7 +3,7 @@ const BlockGuide = () => {
     {
       id: 1,
       icon: "/img/featureIcons/1/1.svg",
-      title: "Best Price Guarantee",
+      title: "Best Price Guarantee 123",
       text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
       delayAnim: "100",
     },

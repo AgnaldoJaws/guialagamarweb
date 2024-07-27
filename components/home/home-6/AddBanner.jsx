@@ -9,7 +9,7 @@ const AddBanner = () => {
       title: (
         <>
           {" "}
-          Things To Do On
+          Things To Do
           <br /> Your Trip
         </>
       ),

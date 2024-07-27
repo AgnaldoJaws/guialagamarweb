@@ -1,65 +1,104 @@
-import Router from "next/router";
-import { useSelector, useDispatch } from "react-redux";
-import { addCurrentTab } from "../../../features/hero/findPlaceSlice";
-import DateSearch from "../DateSearch";
-import GuestSearch from "./GuestSearch";
-import LocationSearch from "./LocationSearch";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import SelectField from "./SelectField";
+import styles from "./MainFilterSearchBox.module.css";
 
-const MainFilterSearchBox = () => {
-  const { tabs, currentTab } = useSelector((state) => state.hero) || {};
-  const dispatch = useDispatch();
+const   MainFilterSearchBox = () => {
+  const firstFieldOptions = [
+    { id: 1, name: "Option 1", nome_subcategory: "CANANEIA" },
+    { id: 2, name: "Option 2", nome_subcategory: "ILHA COMPRIDA" },
+    { id: 3, name: "Option 2", nome_subcategory: "IGUAPE" },
+    { id: 4, name: "Option 2", nome_subcategory: "PARIQUERA AÇU" },
+  ];
+
+  const secondFieldOptions = [
+    { id: 1, nome_subcategory: "ATRATIVOS" },
+    { id: 3, nome_subcategory: "ROTEIROS E PASSEIOS" },
+    { id: 4, nome_subcategory: "ONDE SE HOSPEDAR" },
+    { id: 5, nome_subcategory: "ONDE COMER" },
+    { id: 6, nome_subcategory: "AGENDA DE EVENTOS" },
+    { id: 8, nome_subcategory: "SERVIÇOS" },
+    { id: 11, nome_subcategory: "NATUREZA E CULTURA" },
+  ];
+
+  const [thirdFieldOptions, setThirdFieldOptions] = useState([]);
+  const [selectedFirstField, setSelectedFirstField] = useState("");
+  const [selectedSecondField, setSelectedSecondField] = useState("");
+  const router = useRouter();
+
+  const handleFirstFieldChange = (selectedId) => {
+    setSelectedFirstField(selectedId);
+    setThirdFieldOptions([]);
+    setSelectedSecondField("");
+  };
+
+  useEffect(() => {
+    if (selectedFirstField && selectedSecondField) {
+      fetch(`http://192.168.1.4:8083/api/subCategories/${selectedFirstField}/${selectedSecondField}`)
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.length > 0) {
+              setThirdFieldOptions(data[0]);
+            } else {
+              setThirdFieldOptions([]);
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching third field options:", error);
+            setThirdFieldOptions([]);
+          });
+    } else {
+      setThirdFieldOptions([]);
+    }
+  }, [selectedFirstField, selectedSecondField]);
+
+  const handleSecondFieldChange = (selectedId) => {
+    setSelectedSecondField(selectedId);
+  };
+
+  const handleSearch = () => {
+    if (selectedFirstField && selectedSecondField) {
+      router.push(`/content-list/list-v1?firstField=${selectedFirstField}&secondField=${selectedSecondField}`);
+    } else {
+      alert("Por favor, selecione os campos primeiro e segundo antes de pesquisar.");
+    }
+  };
 
   return (
-    <>
-      <div className="tabs__controls d-flex x-gap-30 y-gap-20 justify-center sm:justify-start js-tabs-controls">
-        {tabs?.map((tab) => (
-          <button
-            key={tab?.id}
-            className={`tabs__button text-15 fw-500 text-white pb-4 js-tabs-button ${
-              tab?.name === currentTab ? "is-tab-el-active" : ""
-            }`}
-            onClick={() => dispatch(addCurrentTab(tab?.name))}
-          >
-            {tab?.name}
-          </button>
-        ))}
-      </div>
-
-      <div className="position-relative mt-30 md:mt-20 js-tabs-content">
-        <div className="mainSearch -w-900 bg-white px-10 py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-100">
-          <div className="button-grid items-center">
-            <LocationSearch />
-            {/* End Location */}
-
-            <div className="searchMenu-date px-30 lg:py-20 lg:px-0 js-form-dd js-calendar">
-              <div>
-                <h4 className="text-15 fw-500 ls-2 lh-16">
-                  Check in - Check out
-                </h4>
-                <DateSearch />
-              </div>
-            </div>
-            {/* End check-in-out */}
-
-            <GuestSearch />
-            {/* End guest */}
-
-            <div className="button-item">
-              <button
-                className="mainSearch__submit button -dark-1 h-60 px-35 col-12 rounded-100 bg-blue-1 text-white"
-                onClick={() => Router.push("/hotel/hotel-list-v1")}
-              >
-                <i className="icon-search text-20 mr-10" />
-                Search
-              </button>
-            </div>
-            {/* End search button_item */}
+      <div className={styles.mainFilterSearchBox}>
+        <div className={styles.mainFilterSearchBox__container}>
+          <SelectField
+              options={firstFieldOptions}
+              label="Destinos"
+              selectedOption={selectedFirstField}
+              onChange={handleFirstFieldChange}
+              disabled={false}
+          />
+          <SelectField
+              options={secondFieldOptions}
+              label="Experiências"
+              selectedOption={selectedSecondField}
+              onChange={handleSecondFieldChange}
+              disabled={!selectedFirstField}
+          />
+          <SelectField
+              options={thirdFieldOptions}
+              label="Atrativos"
+              selectedOption=""
+              onChange={() => {}}
+              disabled={!selectedSecondField}
+          />
+          <div className={styles.mainFilterSearchBox__button}>
+            <button
+                className={styles.mainFilterSearchBox__submitButton}
+                onClick={handleSearch}
+            >
+              <i className={`icon-search ${styles.iconSearch}`} />
+              Pesquisar
+            </button>
           </div>
         </div>
-        {/* End .mainSearch */}
       </div>
-      {/* End serarchbox tab-content */}
-    </>
   );
 };
 

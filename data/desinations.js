@@ -1,69 +1,37 @@
 export const destinations1 = [
-  { id: 1, city: "Hawai", properties: "12,683" },
-  { id: 2, city: "Istanbul", properties: "12,683" },
-  { id: 3, city: "San Diego", properties: "12,683" },
-  { id: 4, city: "Phuket", properties: "12,683" },
-  { id: 5, city: "Reykjavik", properties: "12,683" },
-  { id: 6, city: "Santorini", properties: "12,683" },
-  { id: 7, city: "Los Angeles", properties: "12,683" },
-  { id: 8, city: "Florence", properties: "12,683" },
-  { id: 9, city: "Mykonos", properties: "12,683" },
-  { id: 10, city: "Paris", properties: "12,683" },
-  { id: 11, city: "Dubai", properties: "12,683" },
-  { id: 12, city: "Krakow", properties: "12,683" },
-  { id: 13, city: "Jersey", properties: "12,683" },
-  { id: 14, city: "Prag", properties: "12,683" },
-  { id: 15, city: "Amsterdam", properties: "12,683" },
-  { id: 16, city: "İbiza", properties: "12,683" },
-  { id: 17, city: "Boston", properties: "12,683" },
-  { id: 18, city: "Florence", properties: "12,683" },
-  { id: 19, city: "Mykonos", properties: "12,683" },
-  { id: 20, city: "London", properties: "12,683" },
+  { id: 1, city: "CANANEIA", properties: "12,683" },
+  { id: 2, city: "ILHA COMPRIDA", properties: "12,683" },
+  { id: 3, city: "IGUAPE", properties: "12,683" },
+  { id: 4, city: "PARIQUERA - AÇU", properties: "12,683" },
+
 ];
 
 export const destinations2 = [
   {
     id: 1,
-    hoverText: "14 Hotel - 22 Cars - 18 Tours - 95 Activity",
-    city: "New York",
-    img: "/img/destinations/1/1.png",
+    hoverText: "",
+    city: "CANANEIA",
+    img: "/img/destinations/1/imagem_cidade_cananeia_guia_lagamar_2024.png",
   },
   {
     id: 2,
-    hoverText: "14 Hotel - 22 Cars - 18 Tours - 95 Activity",
-    city: "London",
-    img: "/img/destinations/1/2.png",
+    hoverText: "",
+    city: "ILHA COMPRIDA",
+    img: "/img/destinations/1/imagem_cidade_ilhacomprida_guia_lagamar_2024.png",
   },
   {
     id: 3,
-    hoverText: "14 Hotel - 22 Cars - 18 Tours - 95 Activity",
-    city: "Barcelona",
-    img: "/img/destinations/1/3.png",
+    hoverText: "",
+    city: "IGUAPE",
+    img: "/img/destinations/1/imagem_cidade_iguape_guia_lagamar_2024.png",
   },
   {
     id: 4,
-    hoverText: "14 Hotel - 22 Cars - 18 Tours - 95 Activity",
-    city: "Sydney",
+    hoverText: "",
+    city: "PARIQUERA - AÇU",
     img: "/img/destinations/1/4.png",
   },
-  {
-    id: 5,
-    hoverText: "14 Hotel - 22 Cars - 18 Tours - 95 Activity",
-    city: "Rome",
-    img: "/img/destinations/1/5.png",
-  },
-  {
-    id: 6,
-    hoverText: "14 Hotel - 22 Cars - 18 Tours - 95 Activity",
-    city: "New York",
-    img: "/img/destinations/1/1.png",
-  },
-  {
-    id: 7,
-    hoverText: "14 Hotel - 22 Cars - 18 Tours - 95 Activity",
-    city: "London",
-    img: "/img/destinations/1/2.png",
-  },
+
 ];
 
 export const destinations3 = [
